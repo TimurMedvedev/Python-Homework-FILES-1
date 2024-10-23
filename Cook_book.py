@@ -8,9 +8,11 @@ def make_dict_of_recipes(text_path, cook_book):
     for line in recipes:
         words_in_line = line.split('|')
         if len(words_in_line) == 1 and words_in_line[0] != '\n':
-            keys.append(words_in_line[0].strip())
-            cook_book[words_in_line[0].strip()] = []
-            i+=1
+            word = words_in_line[0].strip('\n')
+            if len(word) > 1:
+                keys.append(words_in_line[0].strip())
+                cook_book[words_in_line[0].strip()] = []
+                i+=1
         elif len(words_in_line)>1:
             cook_book[keys[i]] += [{'ingredient_name': words_in_line[0], 'quantity': words_in_line[1], 'measure': words_in_line[2].strip()}]
 

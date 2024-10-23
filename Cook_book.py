@@ -26,6 +26,7 @@ def get_shop_list_by_dishes(dishes, person_count):
 cook_book = {}
 text_path = os.path.join(os.getcwd(), 'recipes.txt')
 make_dict_of_recipes(text_path, cook_book)
+print(cook_book)
 dishes = ['Омлет', 'Фахитос']
 print(get_shop_list_by_dishes(dishes, 2))
 

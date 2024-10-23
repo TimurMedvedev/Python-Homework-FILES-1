@@ -12,19 +12,17 @@ def add_lists_to_file(lists, sorted_text):
                 for element in row:
                     f.writelines(element)
 
+def make_text_list(directory):
+    texts_path = []
+    for text in directory:
+        texts_path.append(os.path.join(os.getcwd(),'Part 3', text))
+    texts_dict = {}
+    for i, path in enumerate(texts_path):
+        texts_dict[len(add_file_to_list(path))] = [[f'\n{directory[i]}\n'], [str(len(add_file_to_list(path)))+ '\n'], add_file_to_list(path)]
+    return texts_dict
 
-text1_path = os.path.join(os.getcwd(), '1.txt')
-text2_path = os.path.join(os.getcwd(), '2.txt')
-text3_path = os.path.join(os.getcwd(), '3.txt')
 
-text1 = [['\n1.txt\n'], [str(len(add_file_to_list(text1_path)))+ '\n'], add_file_to_list(text1_path)]
-text2 = [['\n2.txt\n'], [str(len(add_file_to_list(text2_path)))+ '\n'], add_file_to_list(text2_path)]
-text3 = [['\n3.txt\n'], [str(len(add_file_to_list(text3_path)))+ '\n'], add_file_to_list(text3_path)]
-
-text_dict = {len(add_file_to_list(text1_path)): text1, 
-             len(add_file_to_list(text2_path)): text2, 
-             len(add_file_to_list(text3_path)): text3
-             }
-sorted_text_dict = dict(sorted(text_dict.items()))
-
+texts_directory = os.listdir(os.path.join(os.getcwd(), 'Part 3'))
+make_text_list(texts_directory)
+sorted_text_dict = dict(sorted(make_text_list(texts_directory).items()))
 add_lists_to_file(sorted_text_dict, 'sorted_text.txt')
